@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation,useQuery } from '@apollo/client';
 import { CREATEUSER } from '../Graphql/Mutation';
+import { GETALLUSER } from '../Graphql/Queries';
 
 const Create_User = () => {
 
@@ -9,7 +10,8 @@ const Create_User = () => {
   const [password,setPassword] = useState("")
 
   const [createUser,{error}] = useMutation(CREATEUSER);
-
+    const {data} = useQuery(GETALLUSER);
+    console.log("======>>>>",data)
 return(
      <div className="createUser">
             <input type="text" placeholder="name" onChange={(e) => setName(e.target.value)}/>
